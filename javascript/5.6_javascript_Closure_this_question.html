@@ -4,51 +4,52 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>4.3_javascript_Inherit</title>
+	<title>5.6_javascript_Closure_This_question</title>
 	<meta name="author" content="Administrator" />
 
 
 </head>
 <body>
 
-<h2>4.3_javascript_Inherit</>
+<h2>5.6_javascript_Closure_This_question</>
 
 </body>
 <script type="text/javascript">
 
 	/**
-	   使用原型链和伪装组合实现继承的方式
+	   闭包的This 问题
 	**/
-	/*******************************父类***********************************/
-	function Parent (name){
-		this.color = ["red","blue"];	
-		this.name  = name;
-	}
-	Parent.prototype.ps = function(){
-		alert(this.name +"["+ this.color+"]");	
-	}
-	/*******************************子类类***********************************/
-	function Child (name,age){
-		this.age = age;
-		Parent.call(this,name);       // 伪造继承
-	}
-	Child.prototype = new Parent(); // 原型链
-	Child.prototype.say = function(){
-		alert(this.name + "," + this.age +"["+ this.color +"]");	
+	/*******************************
+	var name = "window";
+	var person = {     //新建一个person类
+		name:"CUI",
+		age:25,
+		say:function () {
+			return function () {
+				return this.name;
+			}
+		}
 	}
 	
+	当完成person.say()后，函数调用结束了，结束之前this指向person
+	但是在调用匿名函数的时候。this就指向的是window，所以得到的结果是window。
 	
+	alert(person.say()()); // window
 	
-	/*******************************测试***********************************/
-	var c1 = new Child("CUI",25);
-	c1.color.push("green");
-	c1.say();
-	c1.ps;
+  ***********************************/
+	var name = "window";
+	var person = {     //新建一个person类
+		name:"CUI",
+		age:25,
+		say:function () {
+			var that = this;         //
+			return function () {
+				return that.name;  //为什么调用匿名函数的时候 this指向的就是window呢？？？
+			}
+		}
+	}
 	
-	var c2 = new Child("CAO",24);
-	c2.say();
-	c2.ps;
+	alert(person.say()());
  
 </script>
 </html>
-

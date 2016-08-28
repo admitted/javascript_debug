@@ -4,51 +4,63 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>4.3_javascript_Inherit</title>
+	<title>5.8_javascript_Closure_Private_Variable</title>
 	<meta name="author" content="Administrator" />
 
 
 </head>
 <body>
 
-<h2>4.3_javascript_Inherit</>
+<h2>5.8_javascript_Closure_Private_Variable</>
 
 </body>
 <script type="text/javascript">
 
 	/**
-	   使用原型链和伪装组合实现继承的方式
+	   闭包  私有变量
 	**/
-	/*******************************父类***********************************/
-	function Parent (name){
-		this.color = ["red","blue"];	
-		this.name  = name;
-	}
-	Parent.prototype.ps = function(){
-		alert(this.name +"["+ this.color+"]");	
-	}
-	/*******************************子类类***********************************/
-	function Child (name,age){
-		this.age = age;
-		Parent.call(this,name);       // 伪造继承
-	}
-	Child.prototype = new Parent(); // 原型链
-	Child.prototype.say = function(){
-		alert(this.name + "," + this.age +"["+ this.color +"]");	
+	function Person (name) {
+		/***
+		  私有变量
+			此时就没有办法直接访问name这个属性,因为没有this.name
+			要访问name只能通过this.getName(),this.setName()
+			但是要使用这种方式创建私有变量带来的问题是,每个对象有存储大量的函数
+			解决的办法是通过静态私有变量来解决
+		***/
+		this.setName = function (value) {
+			name = value;
+		}
+		this.getName = function () {
+			return name;
+		}
 	}
 	
+	var p = new Person("CUI");
+	alert(p.getName());
+	p.setName("CAO");
+	alert(p.getName());
 	
 	
-	/*******************************测试***********************************/
-	var c1 = new Child("CUI",25);
-	c1.color.push("green");
-	c1.say();
-	c1.ps;
+
+	(function  () {
+		//name 在函数结束之后就消失,在外面是无法引用的
+		var name = "";
+		Person1 = function (value) {
+			name = value;
+		}
+		Person1.prototype.setName = function (value) {
+			name = value;
+		}
+		Person1.prototype.getName = function () {
+			return name;
+		}
+	})();
 	
-	var c2 = new Child("CAO",24);
-	c2.say();
-	c2.ps;
- 
+	var p1 = new Person1("LLLL");
+	alert(p1.getName());
+	p1.setName("OOOO");
+	alert(p1.getName());
+	
 </script>
 </html>
 
