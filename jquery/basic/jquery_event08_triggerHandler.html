@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<meta name="author" content="Administrator" />
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			//仅仅只会执行一次
+			$("*").not("a[href='ccc']").bind("click",function(event,a,b){
+				print(event.currentTarget.id+"--"+event.target.id+":"+(a+b));
+			});
+			
+			$("a[href='ccc']").bind("click",function(event){
+				/*
+				 * 使用triggerHandler带来的好处是可以直接让调用的事件
+				 * 不冒泡，不提交，带来的好处就是
+				 * 写事件我们可以完全按照最正常的方式来写，不用考虑事件传递
+				 * 在特殊的使用通过triggerHandler来调用就会阻止事件传递
+				 */
+				$("#child").triggerHandler("click",[2,3]);
+				event.preventDefault();
+			});
+			/**
+			 * JQuery中的其他很多事件多可以直接通过名称来完成调用
+			 */
+			$("#child").mouseover(function(event){
+				$(this).css("color","#f00");
+			});
+			function print(txt) {
+				$("#content").append(txt+"<br/>");
+			}
+		});
+	</script>
+</head>
+<body id="body">
+	<div id="parent">
+		<div id="child">
+			点了看一下
+		</div>
+	</div>
+	<a href="ccc">abc</a>
+	<div id="content"></div>
+</body>
+</html>
+

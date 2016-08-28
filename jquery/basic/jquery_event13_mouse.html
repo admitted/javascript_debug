@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<style type="text/css">
+		#parent1,#parent2 {
+			height:200px;
+			width:300px;
+			background:#8e7;
+			margin:40px;
+		}
+		#child1,#child2 {
+			height:60px;
+			width:150px;
+			background: #843;
+			position:relative;
+			left:30px;
+			top:30px;
+		}
+	</style>
+	<meta name="author" content="Administrator" />
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			
+			/*
+			 * 当时有mouseover的时候，如果从父类移到子类依然也会得到
+			 * 一个父类的mouseout事件，很多时候这种处理是不需要的
+			 * 所以在JQuery中通过mouseenter和mouseleave来替换
+			 */
+			// $("#parent1").on("mouseover mouseout",function(event){
+				// print(event.type+","+this.id);
+			// });
+// 			
+			// $("#child1").on("mouseover mouseout",function(event){
+				// print(event.type+","+this.id);
+			// });
+			
+			//在JQuery中通常建议使用mouseenter和mouseleave来代替mouseover和mouseout
+			$("#parent2").on("mouseenter mouseleave",function(event){
+				print(event.type+","+this.id);
+			});
+			
+			$("#child2").on("mouseenter mouseleave",function(event){
+				print(event.type+","+this.id);
+			});
+			
+			//使用hover可以有效的实现mouseenter和mouseover的轮换
+			$("#parent1").hover(function(event){
+				print(event.type+","+this.id);
+			},function(event){
+				print(event.type+","+this.id);
+			});
+			
+			$("#child1").hover(function(event){
+				print(event.type+","+this.id);
+			},function(event){
+				print(event.type+","+this.id);
+			});
+			
+			function print(text) {
+				$("#content").append(text+"<br/>");
+			}
+		});
+	</script>
+</head>
+<body id="body">
+	<div id="parent1">
+		parent1
+		<div id="child1">chidl1</div>
+	</div>
+	
+	<div id="parent2">
+		parent2
+		<div id="child2">chidl1</div>
+	</div>
+	
+	<div id="content"></div>
+</body>
+</html>
+

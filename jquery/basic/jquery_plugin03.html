@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<meta name="author" content="Administrator" />
+	<style type="text/css">
+		*{
+			padding:0px;
+			margin: 0px;
+			font-size: 12px;
+		}
+		body {
+			padding: 40px;
+		}
+		.topicList {
+			width:300px;
+			border:1px solid #999;
+		}
+		.topicList li {
+			list-style: none;
+			padding:8px 0px;
+			margin-left:10px;
+			border-bottom:1px dotted #aaa; 
+		}
+		.topicList h3 {
+			height:35px;
+			background: #347;
+			color:#fff;
+			border-bottom:1px solid #fff;
+			cursor:pointer;
+		}
+		.topicList h3 span {
+			position: relative;
+			left:15px;
+			top:10px;
+		}
+	</style>
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript" src="jquery.util.topic.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$(".topicList h3").toggle(topicHandler,topicHandler);
+			
+			// $(".topicList li").each(function(n){
+				// $(this).html($.fixedTopicWidth($(this).html(),{
+					// length:21,
+					// fill:".",
+					// fillLength:5
+				// }));
+			// });
+			
+			$(".topicList li").formatTopic({
+				length:23
+			});
+			
+			$(".topicList li").setColor();
+			
+			function topicHandler() {
+				//使用fadeIn,show,slideDown可以完成某个容器的显示
+				//使用fadeOut,hide,slideUp可以完成某个容器的隐藏
+				//所以可以通过各个的toggle来完成两个之间的轮换
+				$(this).next("ul").fadeToggle(1000);
+			}
+		});
+	</script>
+</head>
+<body>
+	<div class="topicList">
+		<h3><span>学习天地</span></h3>
+		<ul>
+			<li>关于想学习的两款手机基金经理考虑的两款手机基金经理考虑的两款手机基金经理考虑</li>
+			<li>斯蒂格撒旦发撒旦发撒旦发生的撒旦发</li>
+			<li>撒旦发十分反感斯蒂芬斯蒂芬斯蒂芬</li>
+			<li>是法国撒旦发生的顿发生的发生的的方式的</li>
+			<li>地方根深蒂固是否斯蒂芬斯蒂芬斯蒂芬</li>
+			<li>凡撒旦发撒旦发撒旦的方式的地方上的</li>
+			<li>想法告诉师傅第三方斯蒂芬斯蒂芬方式的地方</li>
+			<li>是德国撒旦发撒旦发撒旦发撒旦发发生的</li>
+			<li>身份告诉对方身份的撒旦发撒旦发撒旦</li>
+		</ul>
+	</div>
+</body>
+</html>
+

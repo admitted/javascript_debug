@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<style type="text/css">
+		.bgc{
+			background: #f00;
+			color:#fff;
+		}
+	</style>
+	<meta name="author" content="Administrator" />
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			/*
+			 * 由于live事件写法很怪，所以在1.4之后提供了delegate来完成事件委派
+			 * $("#content")表示的是作用域，第一个参数表示的是绑定对象
+			 * 此时live就不再被使用了，在未来的版本live会被取消
+			 * 目前如果要做事件委派可以有多种方法，使得事件的调用选择很多，JQuery在1.8之后
+			 * 就统一使用on和off来替代bind,live和delegate
+			 */
+			$("#content").delegate(".ccc","click",function(event){
+				alert($(this).html());
+			});
+			$("#content").append("<div class='ccc'>bbbbb</div>");
+			$("#abc").append("<div class='ccc'>bbbbb</div>");
+		});
+	</script>
+</head>
+<body id="body">
+	<div id="content">
+		<div class="ccc">aaaaa</div>
+	</div>
+	<div id="abc"></div>
+</body>
+</html>
+

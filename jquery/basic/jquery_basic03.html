@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>hello_jquery</title>
+	<meta name="author" content="Administrator" />
+	<style type="text/css">
+		.bg {
+			background: #f00;
+			color:#fff;
+		}
+	</style>
+	<!-- Date: 2013-01-15 -->
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		//目前是一个javascript的对象，对于该对象而言，无法使用jquery的方法
+		var hello = document.getElementById("hello");
+		//是js的对象，不能使用jquery的方法
+		// hello.css("color","#f00");
+		//使用$(xx)就可以把xx这个节点封装为jquery的节点
+		$(hello).css("color","#f00");
+		//每一个jquery节点都是一个数组，只要取出数组中的值，这个值就是js的节点，就只能用js的方法
+		//当转换为js节点之后，就无法使用jquery的方法，如果要使用jquery的方法在通过$()进行封装就可以了
+		($("li.abc")[0]).innerHTML = "abccdd";
+		var lis = $("#hello ul li");
+		for(var i=0;i<lis.length;i++) {
+			//目前的li是js的节点
+			var li = lis[i];
+			// li.innerHTML = "["+(i+1)+"]"+li.innerHTML;
+			//$(li)就变成了JQuery节点
+			//xx.html()读取内容，xx.html("abc")：把节点的内容完成替换
+			$(li).html((i+1)+"."+$(li).html());
+		}
+	});
+	</script>
+</head>
+<body>
+<div id="hello">
+	<ul>
+		<li>aaaaaaaaaaaaa</li>
+		<li>vbbbbbbbbbbbb</li>
+		<li class="abc">ccccccccccccc</li>
+		<li>ddddddddddddd</li>
+		<li>eeeeeeeeeeeee</li>
+	</ul>
+</div>
+</body>
+</html>
+
+
+

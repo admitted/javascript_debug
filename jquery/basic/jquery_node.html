@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<meta name="author" content="Administrator" />
+	<style type="text/css">
+		.addBg {
+			background:#f00;
+			color:#fff;
+		}
+		.bigger {
+			font-size:20px;
+		}
+	</style>
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			//在d1这个元素中插入d3这个元素(在d1节点的最后插入)，插入之后，d3就消失
+			//$("#d1").append($("#d3"));
+			//如果原始节点是数组，会在多个节点中插入
+			// $(".ddd").append($("#d3"));
+			
+			//把d1插入到d3中,注意append和appendTo的区别
+			//$("#d1").appendTo($("#d3"));
+			
+			//包装集为.ddd
+			//$(".ddd").appendTo($("#d3")).css("color","#f00");
+			//包装集为d3
+			//$("#d3").append($(".ddd")).css("color","#f00");
+			
+			//在节点前面插入
+			//$("#d1").prepend($("#d3"));
+			
+			//在d1后面插入d3,insertAfter和appendTo
+			//$("#d1").after($("#d3"));
+			
+			//在d1的前面插入d3,insertBefore和insertAfter类似
+			//$("#d1").before($("#d3"));
+			
+			//移除元素
+			//$("#d2").remove();
+			//清空了d3中的所有元素
+			//$("#d3").empty();
+			
+			//从包装集中删除满足条件的元素
+			//$("#d3 li").detach("li:contains('悟空')").css("color","#f00");
+			
+			
+			//此时返回的包装集是d1,remove的时候就是remove了d1，还剩下hello,
+			//变相完成了节点的替换
+			//$("#d1").before("<div>hello</div>").remove().css("color","#f00");
+			
+			//replaceWith方法就是基于以上原理实现的，此时包装集没有任何意义，指向了被移除的元素
+			// $("#d1").replaceWith("<div>ok</div>").css("color","#f00");
+			
+			//在d1的位置用d3来包裹之后，替换d1
+			// $("#d1").wrap($("#d3"));
+			
+			//两个元素都会被包裹
+			//$(".ddd").wrap($("#d3"));
+			
+			//取消包裹
+			//$("ul").unwrap();
+			
+			//把一组元素包裹进去
+			//$(".ddd").wrapAll($("#d3"));
+			
+			//用d3包裹了d1中的值之后，才插入到d1中
+			$("#d1").wrapInner($("#d3"));
+		});
+		
+	</script>
+</head>
+<body>
+	<div id="d1" class="ddd">
+		第一个div
+	</div>
+	<div id="d2" class="ddd">第2个div</div>
+	<div id="d3">
+		<ul>
+			<li>八戒</li>
+			<li>悟空</li>
+			<li>无忌</li>
+		</ul>
+	</div>
+</body>
+</html>
+

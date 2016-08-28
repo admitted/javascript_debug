@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<meta name="author" content="Administrator" />
+	<style type="text/css">
+		.addBg {
+			background:#f00;
+			color:#fff;
+		}
+		.bigger {
+			font-size:20px;
+		}
+	</style>
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			//把d2中的html替换d1中
+			$("#d1").html($("#d2").html());	
+			//text方法仅仅只是获取文本，而不会获取标签信息
+			$("#d1").html($("#d2").text());
+		});
+		
+	</script>
+</head>
+<body>
+	<div id="d1">
+		第一个div
+	</div>
+	<div id="d2">
+		<ul>
+			<li>八戒</li>
+			<li>悟空</li>
+			<li>无忌</li>
+		</ul>
+	</div>
+</body>
+</html>
+

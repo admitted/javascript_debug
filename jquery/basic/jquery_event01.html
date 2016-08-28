@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<meta name="author" content="Administrator" />
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var all = $("*");
+			all.each(function(){
+				var rel = this;
+				this.onclick = function(event) {
+					//1、获取事件发生的目标
+					//需要根据不同的浏览器进行判断，微软的只知道window.event
+					event = event?event:window.event;
+					//IE不知道target而是使用srcElement来代替
+					var target = event.target?event.target:event.srcElement;
+					print("事件源:"+target.id+","+target.tagName+",事件对象:"+this.id+"-->"+this.nodeType);
+					//模式的DOM0，会产生事件冒泡，可以通过event.stopPropagation()来取消事件的冒泡机制
+					event.stopPropagation();
+					//IE是通过这个变量来取消冒泡
+					event.cancelBubble = true;
+					//DOM0模型不支持事件捕获，而且DOM0带来的第二个问题是
+				}
+			});
+			// for(var i=0;i<all.length;i++) {
+				// all[i].onclick = function(event) {
+					// //1、获取事件发生的目标
+					// //需要根据不同的浏览器进行判断，微软的只知道window.event
+					// event = event?event:window.event;
+					// //IE不知道target而是使用srcElement来代替
+					// var target = event.target?event.target:event.srcElement;
+					// alert(this.id);
+					// print("事件源:"+target.id+","+target.tagName+",事件对象:"+this.id);
+				// }
+			// }
+			function print(txt) {
+				$("#content").append(txt+"<br/>");
+			}
+		});
+	</script>
+</head>
+<body id="body">
+	<div id="parent">
+		<div id="child">
+			点了看一下
+		</div>
+	</div>
+	<div id="content"></div>
+</body>
+</html>
+

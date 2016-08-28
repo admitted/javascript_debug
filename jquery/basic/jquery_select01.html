@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<meta name="author" content="Administrator" />
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			//取li中的所有a
+			//$("li a").css("color","#f00");
+			
+			//取class为.myList这个标签的下一级标签li的下一级标签为a的节点
+			// $(".myList>li>a").css("color","#f00");
+			
+			//取li的节点其中li中的href属性是以http://为开头
+			// $("a[href^='http://']").css("background","#00f").css("color","#fff");
+			
+			//取.myList的ul中的包含有a标签的li标签
+			//$(".myList ul li:has('a')").css("background","#ff0");//
+			
+			//获取页面中所有以pdf结尾的超级链接
+			// $("a[href$='pdf']").css("background","#ff0").css("color","#f00");
+			
+			//取id为li1的下一个兄弟节点li,仅仅只会去一个节点,
+			//仅仅只会取相邻的节点，如果相邻的节点不是li就什么都取不出去
+			//$("#li1+li").css("background","#ff0");
+			
+			//取id为li的下面的所有满足条件的兄弟节点
+			// $("#li1~li").css("background","#ff0");
+			
+			// $("a[title]").css("color","#0f0");
+			
+			//页面中最先匹配的某个元素
+			alert($("li:first").html());
+			
+			//页面中最后匹配的元素
+			//alert($("li:last").html());
+			
+			//获取满足要求的第一个li
+			// $(".myList>li li:first-child").css("background","#f00");
+			
+			//获取没有兄弟节点的ul
+			//alert($("ul:only-child").length);
+		});
+	</script>
+</head>
+<body>
+<ul class="myList">
+	<li>
+	<a href="http://jquery.com">JQuery site</a>
+	<ul>
+		<li><a href="css1.txt" title="mycss">CSS1</a></li>
+		<li id="li1"><a href="css2.pdf" title="css2">CSS2</a></li>
+		<li><a href="css3.html" title="this is my">CSS3</a></li>
+		<li>Basic XPath</li>
+	</ul>
+	</li>
+	<li>JQuery also supports
+		<ul>
+			<li>Custom selectors</li>
+			<li>Form selectors</li>
+		</ul>
+	</li>
+</ul>
+</body>
+</html>
+

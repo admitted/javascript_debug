@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<meta name="author" content="Administrator" />
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			//仅仅只会执行一次
+			$("*").one("click",function(event){
+				print(event.currentTarget.id+"--"+event.target.id);
+			})
+			function print(txt) {
+				$("#content").append(txt+"<br/>");
+			}
+		});
+	</script>
+</head>
+<body id="body">
+	<div id="parent">
+		<div id="child">
+			点了看一下
+		</div>
+	</div>
+	<a href="ccc">abc</a>
+	<div id="content"></div>
+</body>
+</html>
+

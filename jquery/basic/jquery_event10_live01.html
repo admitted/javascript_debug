@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<style type="text/css">
+		.bgc{
+			background: #f00;
+			color:#fff;
+		}
+	</style>
+	<meta name="author" content="Administrator" />
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$(".ccc").live("click",function(event){
+				alert($(this).html());
+			});
+			/*
+			 *  使用了Live事件之后，就有效解决了新元素无法绑定的问题
+			 *  live事件存在的原理是通过事件委托的方式
+			 *  事件委托是通过冒泡机制实现的
+			 */
+			$("#content").append("<div class='ccc'>bbbbb</div>");
+		});
+	</script>
+</head>
+<body id="body">
+	<div id="content">
+		<div class="ccc">aaaaa</div>
+	</div>
+</body>
+</html>
+

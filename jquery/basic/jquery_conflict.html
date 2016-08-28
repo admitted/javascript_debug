@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<meta name="author" content="Administrator" />
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			/*
+			 * 在jQuery中$符号仅仅只是一个别名，当时有$引用的时候其实等于使用jQuery引用
+			 * 此时带来的问题就是，其他的很多js框架(prototype之类的框架)都习惯用$来引用
+			 * 自己的关键对象，此时如果多个js库并存的时候，就会发生冲突
+			 * 在JQuery中定义了一个noConfilct()方法来解决冲突，当使用了这个方法之后，$符号
+			 * 就不能再在JQuery中使用了，在JQuery中就仅仅只能使用jQuery了
+			 * 但是此时如果一直使用jQuery来引用会影响开发效率，所以常用的一种方式是
+			 * var $j = JQuery.noConflict();此时就可以用$j来替代$
+			 */
+			var $j = jQuery.noConflict();
+			$j("#users").css("color","#f00");
+		});
+	</script>
+</head>
+<body>
+<table id="tus" width="700" border="1" align="center"></table>
+<table width="700" border="1" align="center" id="users">
+	<thead>
+		<tr>
+			<td>用户标识</td>
+			<td>用户姓名</td>
+			<td>用户年龄</td>
+			<td>用户密码</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr id="abc">
+			<td>1</td>
+			<td>张三</td>
+			<td>23</td>
+			<td>abc123</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>李四</td>
+			<td>33</td>
+			<td>abc123</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>王五</td>
+			<td>13</td>
+			<td>abc123</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>赵六</td>
+			<td>45</td>
+			<td>abc123</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>朱琪</td>
+			<td>21</td>
+			<td>abc123</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>
+

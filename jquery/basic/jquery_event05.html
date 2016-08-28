@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<meta name="author" content="Administrator" />
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#child").bind("click",function(event){
+				//使用JQuery把浏览器之间的问题全部屏蔽了
+				//所使用的事件模型是DOM2
+				print(event.target);
+			});
+			
+			//使用JQuery可以有效的通过第二个参数来传递相应的JSON参数进去
+			$("#child").bind("click",{"name":"zs",age:12},function(event){
+				//使用JQuery把浏览器之间的问题全部屏蔽了
+				//通过event.data可以获取传入的参数值
+				print(event.data.name+"aaa");
+			});
+			function print(txt) {
+				$("#content").append(txt+"<br/>");
+			}
+		});
+	</script>
+</head>
+<body id="body">
+	<div id="parent">
+		<div id="child">
+			点了看一下
+		</div>
+	</div>
+	<div id="content"></div>
+</body>
+</html>
+

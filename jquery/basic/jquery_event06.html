@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<meta name="author" content="Administrator" />
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("*").bind("click",function(event){
+				print(event.currentTarget.id+"--"+event.target.id);
+				//对于JQuery依然存在事件，可以使用以下函数取消事件冒泡
+				event.stopPropagation();
+				//如果对于form或者a可能不希望继续提交或者继续访问超链接，
+				//可以通过event.preventDefault阻止事件继续向下走
+				//特别注意：这个和事件冒泡没有任何的关系
+				event.preventDefault();
+			})
+			function print(txt) {
+				$("#content").append(txt+"<br/>");
+			}
+		});
+	</script>
+</head>
+<body id="body">
+	<div id="parent">
+		<div id="child">
+			点了看一下
+		</div>
+	</div>
+	<a href="ccc">abc</a>
+	<div id="content"></div>
+</body>
+</html>
+

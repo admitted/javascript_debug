@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<meta name="author" content="Administrator" />
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var props = initHeader();
+			var users = getUsers(props);
+			
+			// var json = {"id":1,"username":张三,"age":23,"password":abc123};
+			// alert(json.id);
+			
+			$(users).each(function(n){
+				var str = "";
+				for(var i=0;i<props.length;i++) {
+					str+=this[props[i]]+",";
+				}
+				alert(str);
+			});
+		
+			function getUsers(props) {
+				var users = new Array();
+				$("tbody tr").each(function(n){
+					//不能基于字符串添加，只能基于对象添加
+					var user = new Object();
+					
+					$(this).find("td").each(function(tn){
+						user[props[tn]] = $(this).html();
+					});
+					users.push(user);
+				});
+				return users;
+			}
+			
+			function initHeader() {
+				//可以将一些值存储在标签中，这个值不会通过属性的方式显示给用户
+				// $("thead tr td:eq(0)").data("prop","id");
+				// $("thead tr td:eq(1)").data("prop","username");
+				// $("thead tr td:eq(2)").data("prop","age");
+				// $("thead tr td:eq(3)").data("prop","password");
+				var props = $("thead td").map(function(n){
+					return $(this).attr("title");
+				}).get();
+				return props;
+			}
+		});
+	</script>
+</head>
+<body>
+<table width="700" border="1" align="center" id="users">
+	<thead>
+		<tr>
+			<td title="id">用户标识</td>
+			<td title="username">用户姓名</td>
+			<td title="age">用户年龄</td>
+			<td title="password">用户密码</td>
+			<td title="address">地址</td>
+			<td>操作</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr id="abc">
+			<td>1</td>
+			<td>张三</td>
+			<td>23</td>
+			<td>abc123</td>
+			<td>昭通</td>
+			<td>添加  删除</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>李四</td>
+			<td>33</td>
+			<td>abc123</td>
+			<td>昭通</td>
+			<td>添加  删除</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>王五</td>
+			<td>13</td>
+			<td>abc123</td>
+			<td>昭通</td>
+			<td>添加  删除</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>赵六</td>
+			<td>45</td>
+			<td>abc123</td>
+			<td>卡努曼</td>
+			<td>添加  删除</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>朱琪</td>
+			<td>21</td>
+			<td>abc123</td>
+			<td>昭通</td>
+			<td>添加  删除</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>
+

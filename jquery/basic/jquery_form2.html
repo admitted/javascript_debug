@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<meta name="author" content="Administrator" />
+	<style type="text/css">
+		.addBg {
+			background:#f00;
+			color:#fff;
+		}
+		.bigger {
+			font-size:20px;
+		}
+	</style>
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#all").click(function(){
+				if($(this).prop("checked")) {
+					//选中
+					$("input[type='checkbox']").prop("checked",true);
+					$(this).next("span").html("全取消");
+				} else {
+					$("input[type='checkbox']").prop("checked",false);
+					$(this).next("span").html("全选");
+				}
+			});
+			$("#reverse").click(function(){
+				var c = $("input[type='checkbox']:not(#all):checked");
+				var nc = $("input[type='checkbox']:not(#all):not(:checked)");
+				c.prop("checked",false);
+				nc.prop("checked",true);
+			});
+		});
+		
+	</script>
+</head>
+<body>
+	<input type="checkbox"/><input type="checkbox"/><input type="checkbox"/><input type="checkbox"/><input type="checkbox"/>
+	<input type="checkbox"/><input type="checkbox"/><input type="checkbox"/><input type="checkbox"/><input type="checkbox"/>
+	<br/>
+	<input type="checkbox" id="all"/><span>全选</span>
+	<input type="button" id="reverse" value="反选"/>
+</body>
+</html>
+

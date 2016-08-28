@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<meta name="author" content="Administrator" />
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+	/**
+	 * 直接通过$.方法名称就可以定义一个全局的插件，这种定义带来的问题
+	 * 1、一般插件都需要通过一个独立的js文件来存储，命名的规则的确定
+	 * 2、如果将来$这个符号被jQuery.noConfilct之后，如何保证还能继续使用
+	 */
+	$.say = function(hello) {
+		alert("hello "+hello);
+	}
+	
+	$(function() {
+		$.say("ok");
+	})
+	</script>
+</head>
+<body>
+<table id="tus" width="700" border="1" align="center"></table>
+<table width="700" border="1" align="center" id="users">
+	<thead>
+		<tr>
+			<td>用户标识</td>
+			<td>用户姓名</td>
+			<td>用户年龄</td>
+			<td>用户密码</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr id="abc">
+			<td>1</td>
+			<td>张三</td>
+			<td>23</td>
+			<td>abc123</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>李四</td>
+			<td>33</td>
+			<td>abc123</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>王五</td>
+			<td>13</td>
+			<td>abc123</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>赵六</td>
+			<td>45</td>
+			<td>abc123</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>朱琪</td>
+			<td>21</td>
+			<td>abc123</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>
+

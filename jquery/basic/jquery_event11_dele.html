@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<style type="text/css">
+		.bgc{
+			background: #f00;
+			color:#fff;
+		}
+	</style>
+	<meta name="author" content="Administrator" />
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			//closest就是向上找，如果自己满足就返回，如果自己不满足，继续向上走
+			//$("#ll").closest("ul").css("color","#ff0");
+			//由于closest可以从自己找，所以closet非常适合做事件委派
+			//$("#ll").closest("li").css("color","#ff0");
+			/*
+			 * 事件委托的原理
+			 * 此时每一个事件只要被点击到，他都会冒泡到document去
+			 * 所以以下事件会被处理
+			 * 在处理时，判断一下该事件是否是我要处理的对象就可以了
+			 * 
+			 */
+			$("#content").bind("click",function(event){
+				var obj = $(event.target).closest(".ccc");
+				if((obj[0])==event.target) {
+					alert("abc");
+				}
+			});
+			/*
+			 * 对于live而言就是使用事件委派的方式，但是使用这个方式会带来如下问题
+			 * 1、每个事件都会冒泡到document上面去，开销变大
+			 * 2、使用Live不支持一些特殊的事件
+			 * 对于live方法而已，它提供了第二参数来说明绑定的上下文
+			 */
+			/*
+			 *  使用了Live事件之后，就有效解决了新元素无法绑定的问题
+			 *  live事件存在的原理是通过事件委托的方式
+			 *  事件委托是通过冒泡机制实现的
+			 */
+			$("#content").append("<div class='ccc'>bbbbb</div>");
+			$("#abc").append("<div class='ccc'>bbbbb</div>");
+		});
+	</script>
+</head>
+<body id="body">
+	<div id="content">
+		<div class="ccc">aaaaa</div>
+		<ul>
+			<li>bcd</li>
+			<li>
+				<ul>
+					<li>dddd</li>
+					<li id="ll">abc</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div id="abc"></div>
+</body>
+</html>
+

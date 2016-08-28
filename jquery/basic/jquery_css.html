@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<meta name="author" content="Administrator" />
+	<style type="text/css">
+		.addBg {
+			background:#f00;
+			color:#fff;
+		}
+		.bigger {
+			font-size:20px;
+		}
+	</style>
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			//JQuery通过css来指定样式，甚至完美支持opacity透明度
+			$("#d1").css("height",90+"px").css("width",90+"px")
+					.css("background","#00f").css("color","#fff")
+					.css("opacity","0.6").height(100).width(100)
+					.click(function(){
+						//JQuery提供了一些非常常用的方法来处理常用样式,width,height
+						$(this).width($(this).width()+20).height($(this).height()+20);
+					});
+					
+		});
+		
+	</script>
+</head>
+<body>
+	<div id="d1">点击一下</div>
+</body>
+</html>
+

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<style type="text/css">
+		.bgc{
+			background: #f00;
+			color:#fff;
+		}
+	</style>
+	<meta name="author" content="Administrator" />
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			//此时on的第二个参数没有设定，就认为是对.ccc绑定
+			//这显然就是模拟了bind
+			//$(".ccc").on("click",runc);
+			//当第二参数有值的时候，调用的对象就作为委派根对象
+			$("#content").on("click",".ccc",runc);
+			//以上模拟的是bind
+			$("#content").append("<div class='ccc'>dddddd</div>");
+			$("#abc").append("<div class='ccc'>dddddd</div>")
+		});
+		function runc(event) {
+			alert($(this).html());
+		}
+	</script>
+</head>
+<body id="body">
+	<div id="content">
+		<div class="ccc">aaaaa</div>
+	</div>
+	<div id="abc"></div>
+</body>
+</html>
+

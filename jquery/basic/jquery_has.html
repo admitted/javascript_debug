@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<meta name="author" content="Administrator" />
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			//获取存在有ul的li，返回的是新包装集
+			$("li").has("ul").css("color","#f00");
+			
+			$("div").has("span").css("color","#f00");
+		});
+	</script>
+</head>
+<body>
+	<div>
+		<span class="s1">ssssssssssssssssss</span>
+	</div>
+	<div>
+		<span>
+			2222222222222222222
+		</span>
+	</div>
+	
+	<div>
+		<ul class="u1">
+			<li>aaaaaaaaaaaaa</li>
+		</ul>
+	</div>
+	
+	<ul>
+		<li>aaaa</li>
+		<li>bbbb</li>
+		<li>
+			<ul>
+				<li>cccccccc1</li>
+				<li>cccccccc2</li>
+			</ul>
+		</li>
+		<li>
+			dddddd
+		</li>
+	</ul>
+</body>
+</html>
+

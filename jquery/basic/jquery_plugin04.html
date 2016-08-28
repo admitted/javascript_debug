@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<meta name="author" content="Administrator" />
+	<style type="text/css">
+		*{
+			padding:0px;
+			margin: 0px;
+			font-size: 12px;
+		}
+		body {
+			padding: 40px;
+		}
+		.topicList {
+			width:300px;
+			border:1px solid #999;
+		}
+		.topicList li {
+			list-style: none;
+			padding:8px 0px;
+			margin-left:10px;
+			border-bottom:1px dotted #aaa; 
+		}
+		.topicList h3 {
+			height:35px;
+			background: #347;
+			color:#fff;
+			border-bottom:1px solid #fff;
+			cursor:pointer;
+		}
+		.topicList h3 span {
+			position: relative;
+			left:15px;
+			top:10px;
+		}
+	</style>
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript" src="jquery.util.topic.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#btn").toggle(function(){
+				$("input").setReadOnly(true).val("只读");
+			},function(){
+				$("input").setReadOnly(false);
+			}
+			);
+		});
+	</script>
+</head>
+<body>
+	<input type="text" value="大家哈"/>
+	<input type="button" value="点击" id="btn" />
+</body>
+</html>
+

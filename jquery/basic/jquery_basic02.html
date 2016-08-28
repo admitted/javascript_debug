@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>hello_jquery</title>
+	<meta name="author" content="Administrator" />
+	<style type="text/css">
+		.bg {
+			background: #f00;
+			color:#fff;
+		}
+	</style>
+	<!-- Date: 2013-01-15 -->
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+	// window.onload = function() {
+		// alert("abc");
+	// }
+	// /*
+	 // * 第二方法会将第一个覆盖
+	 // */
+	// window.onload = function() {
+		// alert("bcd");
+	// }
+	
+	/**
+	 * JQuery对加载事件了做了特殊的处理，使得两个方法都会被加载
+	 */
+	$(function(){
+		alert("abc");
+	});
+	
+	$(function() {
+		alert("bcd");
+	})
+	</script>
+</head>
+<body>
+<div id="hello">
+	<ul>
+		<li>aaaaaaaaaaaaa</li>
+		<li>vbbbbbbbbbbbb</li>
+		<li class="abc">ccccccccccccc</li>
+		<li>ddddddddddddd</li>
+		<li>eeeeeeeeeeeee</li>
+	</ul>
+</div>
+</body>
+</html>
+
+
+

@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<meta name="author" content="Administrator" />
+	<style type="text/css">
+		.addBg {
+			background:#f00;
+			color:#fff;
+		}
+		.bigger {
+			font-size:20px;
+		}
+	</style>
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			alert($("#myform").serializeArray());
+			
+			//var j = "{\"username\":[sdfsdf,asdasd],,\"interest\":[足球,篮球,羽毛球],\"sex\":\"1\",\"address\":\"3\"}";
+			//var obj = $.parseJSON("{\"username\":[sdfsdf,asdasd],\"password\":\"\",\"interest\":[足球,篮球,羽毛球],\"sex\":\"1\",\"address\":\"3\"}");
+			//var obj = $.parseJSON(j);
+			//alert(typeof obj.tests);
+			$("#btn").click(function(){
+				//1、获取所有的input中存在name的值
+				var forms = $("#myform :input");
+				//2、获取forms中的所有值
+				// forms.each(function(n){
+					// alert($(this).val());
+				// });
+				var jsons = "{";
+				var adds = new Array();
+				forms.each(function(n){
+					//1、判断当前的name的表单是否有两个以上如果有两个以上并且不是radio或者checkbox
+					//就将组成一个数组来设置值
+					var name =$(this).attr("name");
+					if(name) {
+						if(!checkArray(adds,name)) {
+							if(n>0) {
+								jsons+=",";
+							}
+							var val =getValue(this);
+							if((typeof val)!="string") {
+								if((val instanceof Array)) {
+									val="["+val+"]";
+								}
+								jsons+="\""+$(this).attr("name")+"\":"+$.trim(val)+"";
+							} else {
+								jsons+="\""+$(this).attr("name")+"\":\""+$.trim(val)+"\"";
+							}
+							
+							adds.push(name);
+						}
+					}
+				});		
+				jsons+="}";
+				$("#json").html(jsons);
+				var obj = $.parseJSON(jsons);
+				alert(obj.interest[0]);
+			});
+			
+			function checkArray(ars,value) {
+				var result=false;
+				for(var i=0;i<ars.length;i++) {
+					if(ars[i]==value) {
+						return true;
+					}
+				}
+				return result;
+			} 
+			
+			function getValue(obj) {
+				var target =$(obj);
+				if(!target.is(":radio")&&!target.is(":checkbox")) {
+					//判断通过target这个表单的name取出来的值是不是一个数组
+					var inputs = $("[name='"+target.attr("name")+"']");
+					if(inputs.size()>1) {
+						//说明是一个数组
+						var as = new Array();
+						inputs.each(function(n){
+							as.push("\""+$(this).val()+"\"");
+						});
+						return as;
+					} else {
+						return inputs.val();
+					}
+				} else {
+					var vals = $("input[name='"+target.attr("name")+"']:checked");
+					if(vals.length>1) {
+						var as = new Array();
+						$(vals).each(function(n){
+							as.push("\""+$(this).val()+"\"");
+						});
+						return as;
+					} else {
+						return vals.val();
+					}
+				}
+			}
+		});
+		
+	</script>
+</head>
+<body>
+	
+	<form id="myform">
+		用户名：<input type="text" name="username"  id="username"/><input type="text" name="username"  id="username"/><br/>
+		密    码:<input type="password" name="password" id="password"/><br/>
+		地址:<input type="text" name="address" id="address"/><br/>
+		用户兴趣:<input type="checkbox" name="interest" value="足球"/>足球
+		<input type="checkbox" name="interest" value="篮球"/>蓝球
+		<input type="checkbox" name="interest" value="羽毛球"/>羽毛球
+		<input type="checkbox" name="interest" value="游泳"/>游泳<br/>
+		用户性别:<input type="radio" name="sex" value="0">男
+				<input type="radio" name="sex" value="1">女<br/>
+		用户户籍:<select name="address" id="address">
+				<option value="1">北京</option>
+				<option value="2">上海</option>
+				<option value="3">昭通</option>
+				<option value="4">彝良</option>
+		</select>	<br/>
+		<input type="button" value="测试数据" id="btn"/>	
+	</form>
+	<div id="json"></div>
+</body>
+</html>
+

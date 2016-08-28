@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<meta name="author" content="Administrator" />
+	<style>
+		.selected {
+			background: #f00;
+			color:#fff;
+		}
+		#imgElement {
+			width:327px;
+		}
+		#content span {
+			cursor: pointer;
+		}
+		#movieName {
+			position:relative;
+			top:40px;
+			border:1px solid #999;
+			background:#a43;
+			opacity: 0.7;
+			color:#fff;
+		}
+	</style>
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			// $("#imgElement img").click(function(){
+				// if($(this).attr("src")=="01.jpg") {
+					// $(this).attr("src","02.jpg")
+					// .css("opacity",0.0)
+					// .animate({
+						// opacity:1.0
+					// },1000);
+				// } else {
+					// $(this).attr("src","01.jpg")
+					// .css("opacity",0.0)
+					// .animate({
+						// opacity:1.0
+					// },1000);
+				// }
+			// });
+			var index = 0;
+			$("#imgElement img").each(function(n) {
+					$("#content").append("<span>"+(n+1)+"</span>&nbsp;");
+				}).css("display","none").filter(":eq("+(index++)+")").show();
+				
+			$("#content span").click(function(){
+				var ele = $(this).html();
+				index = (ele-1);
+				change();
+			});
+			$("#content span:eq(0)").addClass("selected");
+			function change() {
+				var img = $("#imgElement img").css("display","none").filter(":eq("+(index)+")").fadeIn('slow');
+				$("#movieName").html(img.attr("alt"));
+				$("#content span").removeClass().filter(":eq("+index+")").addClass("selected");
+				index++;
+				if(index>=$("#imgElement img").size()) {
+					index = 0;
+				}
+			}
+			setInterval(change,3000);
+		});
+	</script>
+</head>
+<body>
+	<div id="content"></div>
+	<div id="imgElement">
+		<div id="movieName">电影名称</div>
+		<img src="movie/01.jpg" alt="七宗罪" height="500"/>
+		<img src="movie/02.jpg" alt="蝴蝶效应" height="500"/>
+		<img src="movie/03.jpg" alt="致命魔术" height="500"/>
+		<img src="movie/04.jpg" alt="第六感" height="500"/>
+		<img src="movie/05.jpg" alt="失忆" height="500"/>
+	</div>
+</body>
+</html>
+

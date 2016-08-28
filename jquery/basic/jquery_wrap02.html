@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>03_select</title>
+	<meta name="author" content="Administrator" />
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			//使用end可以返回上一个包装集
+			// $("tr:eq(2)").siblings("tr")
+				// .css("background","#00f").css("color","#fff")
+				// .end().css("background","#f00").css("color","#00f");
+		
+			// $("#users tbody").clone().appendTo("#tus").find("tr:even").css("color","#f00")
+				// .end().end().find("tr:odd").css("color","#00f");
+			
+			//andSelf表示把所有的包装集合并在一起
+			//$("#users tbody").clone().appendTo("#tus").andSelf().find("td:contains('3')").css("color","#f00");
+		
+			//查询出了两个包装集，一个为tus的table一个为users的table，此时可以过滤得到users这个table
+			//无法使用filter(tr)
+			$("table").filter("table#users").css("color","#f00");
+			//从users这个id的元素中过滤tr为2的元素
+			$("#users").find("tr:eq(2)").css("background","#00f");
+		});
+	</script>
+</head>
+<body>
+<table id="tus" width="700" border="1" align="center"></table>
+<table width="700" border="1" align="center" id="users">
+	<thead>
+		<tr>
+			<td>用户标识</td>
+			<td>用户姓名</td>
+			<td>用户年龄</td>
+			<td>用户密码</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr id="abc">
+			<td>1</td>
+			<td>张三</td>
+			<td>23</td>
+			<td>abc123</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>李四</td>
+			<td>33</td>
+			<td>abc123</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>王五</td>
+			<td>13</td>
+			<td>abc123</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>赵六</td>
+			<td>45</td>
+			<td>abc123</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>朱琪</td>
+			<td>21</td>
+			<td>abc123</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>
+
