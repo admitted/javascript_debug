@@ -1,3 +1,8 @@
-# best
-best 项目
-主要项目
+# admitted 学习记录
+此项目记录的内容是
+
+Javascript
+
+Ajax
+
+Jquery
