@@ -14,52 +14,58 @@
 			//alert($("tr").length);
 			
 			//当执行了get之后得到的结果是一个js的元素
-			//$($("tr").get(1)).css("color","#f00");
+			// get(x) = [x]
+			//$($("tr").get(0)).css("color","#f00");
 			
 			//判断id为abc的tr在包装集的位置
-			// alert($("tr").index($("tr#abc")));
+			//alert($("tr").index($("tr#abc")));
 			
 			//在表达式中通过,可以分割多个包装集，
 			//但是如果包装集太多，而且有时候可以变动的时候，使用这种方式就不好操作
-			//$("tbody tr:eq(2),tr#abc").css("color","#f00");
+			//jQuery选择器 tr:eq(2) 选择 第3个 tr 元素
+			//$("tbody tr:eq(2),tr#abc").css("color","#f00"); //tbody中的第三个tr元素
 			
 			/*
 			 * 可以为包装集使用add方法，可以将新加入的元素添加到包装集中
 			 */
-			// $("tbody tr:eq(2)").add("thead tr td:eq(2)")
-				// .add("tr td:contains('3')").css("color","#f00");
+			//$("tbody tr:eq(2)").add("thead tr td:eq(2)").add("tr td:contains('3')").css("color","#f00");
 			
 			//not方法可以将包装集中的元素取消掉	
 			//$("tr").not("tr#abc").css("color","#f00");
 			
-			//获取tr中位置小于3的元素
+			//获取tr中位置小于3的元素  
+			// :lt 选择器选取带有小于指定 index 值的元素。
+			// tr:lt(3) 选择前3个tr元素   tr:gt(3) 选择前4个tr元素后面的元素
+			// filter() 过略掉括号里的元素
 			//$("tr").filter("tr:lt(3)").css("color","#f00");
 			
 			//获取tr中的1,3形成一个新的包装集，返回的值就是新的包装集
-			// $("tr").css("background","#00f").slice(1,3).css("color","#f00");
+			//$("tr").css("background","#00f").slice(1,3).css("color","#f00");
 			
 			//从包装集的内部获取相应的元素，返回的值也是新包装集
-			//$("table").find("tr#abc").css("color","#f00");
+			//$("table").find("tr#abc").css("color","#f00").css("background","#00f");
 			
-			//is表示的是当前的包装集中是否有某个元素,$(table)的包装集中只有一个元素table,所以没有td
-			//alert($("table").is("td:contains('用户')"));
+			//is表示的是当前的包装集中是否有某个元素,
+			//$(table)的包装集中只有一个元素table,所以没有td
+			//alert($("td").is("td:contains('用户')"));
 			
-			//获取tbody中的所有元素为值等于3的tr子元素,返回的也是新包装集
+			//获取tbody中的所有元素为值等于4的tr子元素,返回的也是新包装集
 			//$("tbody").children("tr:eq(3)").css("color","#f00");
 			
-			//找到下一个子元素，只是一个元素，返回新包装集
-			// $("tr#abc").next().css("color","#ff0");
+			//找到 tr#abc 下一个同胞元素，只是一个元素，返回新包装集
+			//$("tr#abc").next().css("color","#ff0");
 			
-			//找到下一个组兄弟元素，所有元素，返回新包装集
-			// $("tr#abc").nextAll().css("color","#0f0");
+			//找到之后的所有同辈元素，所有元素，返回新包装集
+			//$("tr#abc").nextAll().css("color","#0f0");
 			
 			//parent仅仅只是返回上一级的div，返回新包装集
-			// $("#s1").parent("div").css("color","#0f0");
+			//$("#s1").parent("div").parent("div").css("color","#0f0");
 			
 			//返回所有满足条件的父类节点，返回新包装集
-			// $("#s1").parents("div").css("color","#f00");
+			//$("#s1").parents("div").css("color","#f00");
 			
 			//返回第3个tr的所有兄弟节点，返回新包装集
+			// siblings 获得匹配元素集合中所有元素的同辈元素 原始元素不包含在同胞元素中
 			var a = $("tr:eq(2)").siblings("tr").css("color","#f00").is("tr#abc");
 			alert(a);
 		});

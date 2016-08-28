@@ -21,15 +21,15 @@
 		//是js的对象，不能使用jquery的方法
 		// hello.css("color","#f00");
 		//使用$(xx)就可以把xx这个节点封装为jquery的节点
-		$(hello).css("color","#f00");
+		$(hello).css("color","#f0f");
 		//每一个jquery节点都是一个数组，只要取出数组中的值，这个值就是js的节点，就只能用js的方法
 		//当转换为js节点之后，就无法使用jquery的方法，如果要使用jquery的方法在通过$()进行封装就可以了
-		($("li.abc")[0]).innerHTML = "abccdd";
+		($("li.abc")[0]).innerHTML = "abccdd"; //取出值后就是一个js节点,不能用jQuery方法,调用的是JavaScript方法
 		var lis = $("#hello ul li");
 		for(var i=0;i<lis.length;i++) {
 			//目前的li是js的节点
 			var li = lis[i];
-			// li.innerHTML = "["+(i+1)+"]"+li.innerHTML;
+			//li.innerHTML = "["+(i+1)+"]"+li.innerHTML;
 			//$(li)就变成了JQuery节点
 			//xx.html()读取内容，xx.html("abc")：把节点的内容完成替换
 			$(li).html((i+1)+"."+$(li).html());
