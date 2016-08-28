@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>4.1.3_javascript_Inherit_base_Prototype_Question</title>
+	<meta name="author" content="Administrator" />
+
+
+</head>
+<body>
+
+<h2>4.1.3_javascript_Inherit_base_Prototype_Question</>
+
+</body>
+<script type="text/javascript">
+
+	/**
+	    让Child的原型链指向Parent对象
+	    需要注意的
+	    问题1：原型又自己重写后,就不存在继承关系了
+	    问题1：原型链设定的先后
+	**/
+  function Parent(){
+		this.pv = "parent";	
+	}
+	Parent.prototype.pp = "OK";
+	Parent.prototype.showParentValue = function(){
+		alert(this.pv);		
+	}
+	
+	
+	function Child(){
+		this.pv = "child";	           //如果子类覆盖了父类的属性，即使调用父类的方法，还是会调用新覆盖的属性
+	}
+	//让Child的原型链指向Parent对象，就等于完成一次继承
+	Child.prototype = new Parent();  
+	Child.prototype.showChildValue = function(){
+		alert(this.pv);		
+	}
+//	Child.prototype = new Parent(); // 不能在此将Child的原型链指向Parent对象
+	
+	var c1 = new Child();
+	c1.showParentValue();
+	c1.showChildValue();
+	alert(c1.pp);
+ 	alert("I'm 4.1.3");
+ 	//
+ 	Child.prototype ={
+ 		showChildValue:function(){
+ 			alert(this.pv);	
+ 		}	
+ 	}
+ 	
+ 	var c2 = new Child();
+//	c2.showParentValue();//因为没有了继承，报错此处
+	c2.showChildValue();   //打印 child
+	alert(c2.pp);          //因为没有了继承  undifined
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	//js 打印对象
+ 	function writeObj(obj)
+ 	{ 
+ 		var description = ""; 
+ 		for(var i in obj)
+ 		{ 
+ 			var property=obj[i]; 
+ 			description+=i+" = "+property+"\n";
+ 		} 
+ 		alert(description); 
+ 	}
+  
+
+</script>
+</html>
+

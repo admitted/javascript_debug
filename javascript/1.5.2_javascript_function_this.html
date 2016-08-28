@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>1.5_javascript_function_arguments</title>
+	<meta name="author" content="Administrator" />
+
+
+</head>
+<body>
+
+<h2>1.5_javascript_function_arguments</>
+
+</body>
+<script type="text/javascript">
+
+	 // 当需要创建一个类的时候，设置类的属性和方法需要通过this关键字来引用
+	 // this关键字在调用的时候会根据不同的对象变得不同
+	
+	 
+	var color = "red";
+	function showColor () {
+		alert(this.color);
+	}
+ 
+	function Circle (color) {
+		this.color = color;
+		this.showColor = showColor;
+	}
+	 
+	var c = new Circle("yellow"); 
+	c.showColor();//此时的this是c ，去找c的color
+	
+	showColor(); // 此时的this是window ，会去找window中的color
+	
+
+</script>
+</html>
+

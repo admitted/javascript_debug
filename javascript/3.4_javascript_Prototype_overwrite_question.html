@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>3.4_javascript_prototype_overwrite_question</title>
+	<meta name="author" content="Administrator" />
+
+
+</head>
+<body>
+
+<h2>3.4_javascript_prototype_overwrite_question</>
+
+</body>
+<script type="text/javascript">
+
+	/**
+		原型的重写问题
+	**/
+	
+	function Person(){
+		
+	}
+	var p1 = new Person();
+	Person.prototype.sayHi  = function(){
+				alert(this.name+": Hi");
+	}	
+	
+	
+	/**
+	* 如果把重写放在new person 之后，注意内存模型，原型重写问题
+	*/
+	Person.prototype = {
+		constructor:Person, //手动指定constructor
+		name:"CUI",
+		age:25,
+		say:function(){
+				alert(this.name+"["+ this.age+"]");
+		}	
+	}
+	
+	p1.sayHi();
+
+	var p2 = new Person();
+	//p2.sayHi();
+	p2.say();
+	p1.say();
+	
+ 	//writeObj(p1);
+ 	//writeObj(p2);
+ 	
+ 	
+ 	//js 打印对象
+ 	function writeObj(obj)
+ 	{ 
+ 		var description = ""; 
+ 		for(var i in obj)
+ 		{ 
+ 			var property=obj[i]; 
+ 			description+=i+" = "+property+"\n";
+ 		} 
+ 		alert(description); 
+ 	}
+  
+ 
+  
+ 
+ 
+</script>
+</html>
+

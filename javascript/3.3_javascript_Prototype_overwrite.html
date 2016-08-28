@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>2.2_javascript_Object_constructor</title>
+	<meta name="author" content="Administrator" />
+
+
+</head>
+<body>
+
+<h2>2.2_javascript_Object_constructor</>
+
+</body>
+<script type="text/javascript">
+
+	/**
+		原型的重写
+		使用如下方式编写代码，当属性和方法特别多时，很不方便
+		于是可以使用json的格式来编写
+	**/
+	
+	
+	//Person.prototype.name = "Cui";
+	//Person.prototype.age  = 25;
+	//Person.prototype.say  = function(){
+	//			alert(this.name+"["+ this.friends+"]");
+	//}	
+	
+	
+	/**
+	* 由于原型重写，而且没有通过Person.prototype 来指定
+	* 此时的constructor不会再指向Person 而是指向Object
+	* 如果constructor真的很重要，可以在json中说明原型的指向
+	*/
+	
+	function Person(){
+		
+	}
+	Person.prototype = {
+		constructor:Person, //手动指定constructor
+		name:"CUI",
+		age:25,
+		address:"Hangzhou",
+		say:function(){
+				alert(this.name+"["+ this.address+"]");
+		}	
+	}
+	var p1 = new Person();
+	p1.say();
+	alert(p1.constructor == Person);
+ 
+  
+ 
+</script>
+</html>
+

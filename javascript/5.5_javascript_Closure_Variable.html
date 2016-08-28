@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>5.5_javascript_Closure_Variable</title>
+	<meta name="author" content="Administrator" />
+
+
+</head>
+<body>
+
+<h2>5.5_javascript_Closure_Variable</><br/>
+
+</body>
+<script type="text/javascript">
+
+	/**
+	   闭包的变量问题
+	**/
+	/****************************************************/
+	function fn1(){
+		//创建一个数组
+		var fns = new Array();
+		//i这个变量是保存在fn1这个作用域中的
+		for(var i = 0 ; i < 10 ;i++){	
+			 fns[i] = function(){
+			 		return i;
+			 }
+		}
+		return fns;
+	}
+	
+	var fs = fn1();
+	for(var i = 0 ; i<fs.length ; i++){
+		//每次循环，都创建了一个新的函数，然后，把创建的10个函数都添加到一个Array中返回了
+		//此时通过闭包来调用所有函数，当输出i的时候会去上一级的作用域中去寻找，并且当返回的函数完全执行完后
+		//这个时候i的值已经是10，所以连续输出10个10
+		//原因就在于返回的函数引用了变量i，但它并非立刻执行。等到10个函数都返回时，它们所引用的变量i已经变成了10
+		document.write(fs[i]()+"<br/>");
+	}
+	
+	//返回闭包时牢记的一点就是：返回函数不要引用任何循环变量，或者后续会发生变化的变量。
+	
+	
+	/****************************************************/
+	function fn2(){
+		var fns = new Array();
+		//i这个变量是保存在fn2这个作用域中的
+		for(var i = 0 ; i < 10 ;i++){	
+			//num 变量保存在fn2这个tf作用域，每一个闭包的num都不一样
+			//所以此时的消耗内存特别大
+			 var tf  = function(num){
+			 		fns[num] = function(){ //相当于 fns[num] = num;
+			 				return num;
+			 		}
+			 }
+			 tf(i);
+		}
+		return fns;
+	}
+	
+	var fs2 = fn2();
+	for(var i = 0 ; i<fs2.length ; i++){
+		//每一个fs2都是在不同的作用域中，num也是保存在不同的作用域中，所以输出0-9；
+		document.write(fs2[i]()+"<br/>");
+	}
+	
+	/********************************/
+	//'use strict';
+	function counter (intilize){
+		var x = intilize || 0;
+		return {
+			int: function(){
+				x +=1;
+				return x;
+			}
+		}
+	}
+	
+	//var c = counter();
+	var c = counter(10);
+	alert(c.int());
+	alert(c.int());
+	alert(c.int());
+	alert(c.int());
+	alert(c.int());
+	alert(c.int());
+	
+	//闭包就是携带状态的函数，并且它的状态可以完全对外隐藏起来
+	
+	function make_pow(n){
+			return function(x){
+				 return Math.pow(x,n);
+			}
+	}
+	
+	var pow2 = make_pow(2);
+	alert(pow2(5));
+	
+	var pow6 = make_pow(6);
+	alert(pow6(2));
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</script>
+</html>
+

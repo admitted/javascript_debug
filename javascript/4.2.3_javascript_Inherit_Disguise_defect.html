@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>4.2.3_javascript_Inherit</title>
+	<meta name="author" content="Administrator" />
+
+
+</head>
+<body>
+
+<h2>4.2.3_javascript_Inherit</>
+
+</body>
+<script type="text/javascript">
+
+	/**
+	   伪装实现继承的方式存在的问题
+	**/
+	
+	function Parent (name){
+		this.color = ["red","blue"];	
+		this.name = name;
+		this.say = function(){
+			alert(this.name);	
+		}
+	}
+	
+	/*****
+	 由于使用伪造的方式，不会完成Child的原型指向Parent，
+	 所以say方法不存在，解决办法是，将这个方法放置到Parent
+	 中使用this来创建，但是此时每个对象又存在say，这样空间
+	 占用太大，所以也不会单独的使用伪造的方式来实现继承
+	***/
+	
+	function Child (name,age){
+		this.age = age;
+		//使用伪造的方式就可以把子类的构造函数传递到父类中去
+		// this : 上下文  ，  name ： 一个参数
+		Parent.call(this,name); //call(name,this) 这么写的话，报错 undifined,25
+	}
+	
+	//每调用一次new child() 就等于执行了一次对象属性的设定，
+	//此时，每个对象的空间都有color和name属性，不在原型中存在，
+	//也就不会被共享
+	var c1 = new Child("CUI",25);
+  var c2 = new Child("CAO",24);
+  c1.say();
+  c2.say();
+ 
+ 
+</script>
+</html>
+

@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>1.6_javascript_function_length&call&applay</title>
+	<meta name="author" content="Administrator" />
+
+
+</head>
+<body>
+
+<h2>1.6_javascript_function_length&call&applay</>
+
+</body>
+<script type="text/javascript">
+
+	//length指的是该函数所期望传递过来的参数个数
+	function fn1() {
+		
+	}
+	
+	function fn2(num1,num2) {
+		
+	}
+	
+	function fn3(num1) {
+		
+	}
+	
+	//alert(fn1.length);
+	//alert(fn2.length);
+	//alert(fn3.length);
+	
+	/*
+	call和apply方法是可以通过函数名称来调用函数
+  对于apply而言
+  有两个参数，第一个是调用的上下文，第二个是参数数组，可以直接把arguments传递进去
+  对于call而言
+  第一个参数是上下文对象，后面的参数是不同函数参数
+	*/
+	function sum (num1,num2) {
+		return num1+ num2;
+	}
+	
+	function applySum1 (num1,num2) {
+		return sum.apply(this,arguments);
+	}
+	
+	function applySum2 (num1,num2) {
+		return sum.apply(this,[num1,num2]);
+	}
+	
+	alert(applySum1(12,22));  //34
+	alert(applySum2(22,32));  //54
+	
+	function callSum3 (num1,num2) {
+		return sum.call(this,num1,num2);
+	}
+	alert(callSum3(22,32)); //54
+	
+	//
+	
+	var color = "red";
+	function showColor () {
+		alert(this.color);
+	}
+	
+	function Circle (color) {
+		this.color = color;
+	}
+	
+	var c = new Circle("yellow");
+	showColor.call(this);  //使用上下文 window 来调用:   red
+	showColor.call(c);     //使用上下文 c      来调用:   yellow
+	
+</script>
+</html>
+

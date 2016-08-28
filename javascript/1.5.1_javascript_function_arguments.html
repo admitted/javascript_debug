@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>1.5_javascript_function_arguments</title>
+	<meta name="author" content="Administrator" />
+
+
+</head>
+<body>
+
+<h2>1.5_javascript_function_arguments</>
+
+</body>
+<script type="text/javascript">
+
+	 // 在函数对象中有一个属性叫做arguments,通过这个属性可以获取相应的参数值，
+	 // 这个属性是一个数组，就是传递进来的参数。
+	 /*
+	 function say (num) {
+	 		alert(arguments.length);
+	 		for (var i = 0; i < arguments.length;i++) {
+	 			 alert(arguments[i]); //arguments[i] 就是参数。
+	 		}
+	 		alert(num);
+	 }
+	 
+	 say(1,2,3);
+	 */
+	 
+	 
+	 //arguments这个对象有一个callee的方法,可以反向调用？？？？
+	 
+	 //阶乘积
+	 function factorial (num) {
+	 		if (num<=1) {
+	 			return 1;
+	 		}
+	 		else {
+	 			//此时和函数名耦合在一起
+	 			//return num*factorial(num-1);
+	 			return num*arguments.callee(num-1);//在js中通常采用这种方式做递归
+	 		}
+	 }
+	 
+	 var cf = factorial;
+	 //此时不会报错
+	 alert(cf(5));
+	 //
+	 factorial = null;
+	 alert(cf(5));
+	 
+	 
+	 //var cf = factorial;
+	 //此时不会报错
+	 alert(factorial(5));
+	 //此时报错?? 
+	 factorial = null;  //???
+	 alert(factorial(5));
+	 
+	 
+
+</script>
+</html>
+

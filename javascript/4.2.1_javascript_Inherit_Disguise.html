@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>4.2.1_javascript_Inherit</title>
+	<meta name="author" content="Administrator" />
+
+
+</head>
+<body>
+
+<h2>4.2.1_javascript_Inherit</>
+
+</body>
+<script type="text/javascript">
+
+	/**
+	   伪装实现继承的方式
+	**/
+	
+	function Parent (){
+		this.color = ["red","blue"];	
+		this.name = "CUI";
+	}
+	
+	function Child (){
+		//这种方式仅仅完成了函数的调用，根本无法实现继承，所以不可取
+		//Parent();
+		
+		//在Child中的this 明显应该是指向Child的对象
+		//当调用Parent方法的时候，this又指向了Child
+		//此时相当于在这里完成了this.color =  ["red","blue"];
+		//也就是Child中有了this.color属性 ，变相完成了继承
+		Parent.call(this);
+	}
+	
+	
+	//每调用一次new child() 就等于执行了一次对象属性的设定，
+	//此时，每个对象的空间都有color和name属性，不在原型中存在，
+	//也就不会被共享
+	var c1 = new Child();
+	c1.color.push("green");
+	alert(c1.color);
+	
+	
+  var c2 = new Child();
+  alert(c2.color);
+  alert(c2.name);
+ 
+</script>
+</html>
+

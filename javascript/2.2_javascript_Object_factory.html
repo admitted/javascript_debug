@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>2.2_javascript_object_factory</title>
+	<meta name="author" content="Administrator" />
+
+
+</head>
+<body>
+
+<h2>2.2_javascript_object_factory</>
+
+</body>
+<script type="text/javascript">
+
+	/**
+		工厂模式
+	**/
+	
+	function createPerson (name,age) {
+		var o = new Object();
+		o.name = name;
+		o.age = age;
+		o.say = function  () {
+	    alert(this.name+","+ this.age);
+		}
+		return o;
+	}
+	
+	var p1 = createPerson ("Cui",25); //但无法检测对象p1,p2的数据类型
+	var p2 = createPerson ("Cao",24);
+  
+  p1.say();
+  p2.say();
+ 	writeObj(p1);
+ 	writeObj(p2);
+ 	
+ 	
+ 	//js 打印对象
+ 	function writeObj(obj)
+ 	{ 
+ 		var description = ""; 
+ 		for(var i in obj)
+ 		{ 
+ 			var property=obj[i]; 
+ 			description+=i+" = "+property+"\n";
+ 		} 
+ 		alert(description); 
+ 	}
+  
+ 
+  
+ 
+ 
+</script>
+</html>
+

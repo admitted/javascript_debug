@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>4.2.2_javascript_Inherit</title>
+	<meta name="author" content="Administrator" />
+
+
+</head>
+<body>
+
+<h2>4.2.2_javascript_Inherit</>
+
+</body>
+<script type="text/javascript">
+
+	/**
+	   伪装实现继承的方式之子类构造函数
+	**/
+	
+	function Parent (name){
+		this.color = ["red","blue"];	
+		this.name = name;
+	}
+	
+	function Child (name,age){
+		this.age = age;
+		//使用伪造的方式就可以把子类的构造函数传递到父类中去
+		// this : 上下文  ，  name ： 一个参数
+		Parent.call(this,name); //call(name,this) 这么写的话，报错 undifined,25
+	}
+	
+	//每调用一次new child() 就等于执行了一次对象属性的设定，
+	//此时，每个对象的空间都有color和name属性，不在原型中存在，
+	//也就不会被共享
+	var c1 = new Child("CUI",25);
+  var c2 = new Child("CAO",24);
+  
+  alert(c1.name+","+c1.age);
+  alert(c2.name+","+c2.age); 
+ 
+</script>
+</html>
+

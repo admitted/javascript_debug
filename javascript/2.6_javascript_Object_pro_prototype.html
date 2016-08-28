@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>2.6_javascript_Object_Pro_prototype</title>
+	<meta name="author" content="Administrator" />
+
+
+</head>
+<body>
+
+<h2>2.6_javascript_Object_Pro_prototype</>
+
+</body>
+<script type="text/javascript">
+
+	/**
+		为了让定义的方式更加符合Java的要求，动态原型模式
+	**/
+	
+	function Person (name,age,friends) {
+		//属性在构造函数中定义
+		this.name = name;
+		this.age = age;
+		this.friends = friends;
+		
+	  if(!Person.prototype.say){
+			Person.prototype.say=function(){
+				alert(this.name+"["+ this.friends+"]");
+	    }
+		}
+	}
+	
+	
+	var p1  = new Person("Cui",25,["Cao","Chai"]); 
+	p1.name = "CUI";
+	p1.friends.push("ZHan");
+	p1.say();
+	
+	var p2  = new Person("Zhan",26,["Fan"]);
+	p2.say();
+	
+ 	writeObj(p1);
+ 	writeObj(p2);
+ 	
+ 	//js 打印对象
+ 	function writeObj(obj)
+ 	{ 
+ 		var description = ""; 
+ 		for(var i in obj)
+ 		{ 
+ 			var property=obj[i]; 
+ 			description+=i+" = "+property+"\n";
+ 		} 
+ 		alert(description); 
+ 	}
+  
+  
+ 
+  
+ 
+ 
+</script>
+</html>
+

@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>4.1.2_javascript_Inherit_base_Prototype_code</title>
+	<meta name="author" content="Administrator" />
+
+
+</head>
+<body>
+
+<h2>4.1.2_javascript_Inherit_base_Prototype_code</>
+
+</body>
+<script type="text/javascript">
+
+	/**
+	    内存模型对应代码
+	    Js 实现继承的第一种方式是基于原型链的方式
+	*/
+	/**************父类*************/
+	function Parent(){
+		this.pv = "parent";	
+	}
+	Parent.prototype.pp = "OK";
+	Parent.prototype.showParentValue = function(){
+		alert(this.pv);		
+	}
+	
+	/**************子类*************/
+	function Child(){
+		this.pv = "child";	//如果子类覆盖了父类的属性，即使调用父类的方法，还是会调用新覆盖的属性
+	}
+	//让Child的原型链指向Parent对象，就等于完成一次继承
+	//注意内存模型
+	Child.prototype = new Parent();
+	Child.prototype.pp = "Hi";   
+	Child.prototype.showChildValue = function(){
+		alert(this.pv);		
+	}
+	
+	/**************测试*************/
+	var c = new Child();
+	c.showParentValue();
+	c.showChildValue();
+	alert(c.pp);
+	
+
+ 	//js 打印对象
+ 	function writeObj(obj)
+ 	{ 
+ 		var description = ""; 
+ 		for(var i in obj)
+ 		{ 
+ 			var property=obj[i]; 
+ 			description+=i+" = "+property+"\n";
+ 		} 
+ 		alert(description); 
+ 	}
+  
+
+ 
+ 
+</script>
+</html>
+

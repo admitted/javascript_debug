@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>2.2_javascript_Object_prototype</title>
+	<meta name="author" content="Administrator" />
+
+
+</head>
+<body>
+
+<h2>2.2_javascript_Object_prototype</>
+
+</body>
+<script type="text/javascript">
+
+	/**
+		基于原型的方式
+		1、无法通过构造函数来设置属性值
+		2、当属性中有引用类型变量，可能存在变量值重复
+	**/
+ 
+	function Person () {
+		
+	}
+	Person.prototype = {
+		constructor:Person,
+		name:"Cui",
+		age:30,
+		friends:["Cao","Cai"],
+		say:function(){
+			alert(this.name+"["+this.friends+"]");	
+		}	
+	}
+	
+	var p1 = new Person();
+	p1.name = "Fan";
+	p1.say();
+	p1.friends.push("Zhan");
+	
+	var p2 = new Person();
+	p2.say(); //原型中多了一个 Zhan  第二个问题
+	
+	
+ 	//writeObj(p1);
+ 	//writeObj(p2);
+ 	
+ 	
+ 	//js 打印对象
+ 	function writeObj(obj)
+ 	{ 
+ 		var description = ""; 
+ 		for(var i in obj)
+ 		{ 
+ 			var property=obj[i]; 
+ 			description+=i+" = "+property+"\n";
+ 		} 
+ 		alert(description); 
+ 	}
+  
+ 
+  
+ 
+ 
+</script>
+</html>
+

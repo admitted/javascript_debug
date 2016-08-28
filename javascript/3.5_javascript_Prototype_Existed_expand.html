@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>3.5_javascript_Prototype_Expand_Existed</title>
+	<meta name="author" content="Administrator" />
+
+
+</head>
+<body>
+
+<h2>3.5_javascript_Prototype_Expand_Existed</>
+
+</body>
+<script type="text/javascript">
+
+	/**
+		希望为String增加一个trim 方法来去除空格，可以通过如下方式
+	**/
+	String.prototype.trim = function(){
+		return this.replace(/(^\s+)|(\s+$)/g,"");	 //字符内部空格去不了 只能去除两边的空格
+	}
+	
+	var str = "  a    aa   "; 
+	alert("|"+str.trim()+"|");
+	
+	
+	
+ 	//writeObj(p1);
+ 	//writeObj(p2);
+ 	
+ 	
+ 	//js 打印对象
+ 	function writeObj(obj)
+ 	{ 
+ 		var description = ""; 
+ 		for(var i in obj)
+ 		{ 
+ 			var property=obj[i]; 
+ 			description+=i+" = "+property+"\n";
+ 		} 
+ 		alert(description); 
+ 	}
+  
+ 
+  
+ 
+ 
+</script>
+</html>
+

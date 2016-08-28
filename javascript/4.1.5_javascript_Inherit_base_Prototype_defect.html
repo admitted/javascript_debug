@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>4.1.5_javascript_Inherit_base_Prototype_defect</title>
+	<meta name="author" content="Administrator" />
+
+
+</head>
+<body>
+
+<h2>4.1.5_javascript_Inherit_base_Prototype_defect</>
+
+</body>
+<script type="text/javascript">
+
+	/**
+	*   使用原型链继承，
+			最大的缺点是，无法从子类调用父类的构造函数，这样就没有办法把子类的属性值赋值到父类
+	    第二个缺点是，如果父类中又引用类型，此时这个引用类型会添加到子类的原型当中去，
+	    当第一个对象修改了这个引用之后，其他对象的引用也会被同时修改。
+	    所以一般不会用单纯的使用原型链来实现继承。
+	*
+	**/
+	
+	/**************父类*************/
+  function Parent(){
+		this.pv = "parent";	
+	}
+	Parent.prototype.pp = "OK";
+	Parent.prototype.showParentValue = function(){
+		alert(this.pv);		
+	}
+	
+	/**************子类*************/
+	function Child(){
+	//	this.pv = "Child";		 //如果子类覆盖了父类的属性，即使调用父类的方法，还是会调用新覆盖的属性
+	}
+	//让Child的原型链指向Parent对象，就等于完成一次继承
+	Child.prototype = new Parent();  
+	Child.prototype.showChildValue = function(){
+		alert(this.pv);		
+	}
+  //Child.prototype = new Parent(); // 不能在此将Child的原型链指向Parent对象
+	//父类方法的覆盖:必须在指定原型链之后定义覆盖
+	Child.prototype.showParentValue = function(){
+		alert("override parent");		
+	}
+	
+	
+	/**************测试*************/
+	var c1 = new Child();  
+	c1.showParentValue();  // override parent
+	c1.showChildValue();   // parent
+	alert(c1.pp);          // OK
+	c1.pp = "PP";          
+	alert(c1.pp);          // PP
+	
+	var c2 = new Child();
+	alert(c1.pp);          // PP  c2.pp 无辜被修改了
+ 
+ 
+</script>
+</html>
+

@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>3.2_javascript_Prototype_validate</title>
+	<meta name="author" content="Administrator" />
+
+
+</head>
+<body>
+
+<h2>3.2_javascript_Prototype_validate</>
+
+</body>
+<script type="text/javascript">
+
+	/**
+		原型的检测
+	**/
+	
+	function Person (name,age,friends) {
+		//属性在构造函数中定义
+		this.name = name;
+		this.age = age;
+		this.friends = friends;
+	}
+	Person.prototype = {
+		constructor:Person,
+		address:"Hangzhou",
+		say:function(){
+				alert(this.name+"["+ this.friends+"]");
+		}	
+	}
+	
+	var p1  = new Person("Cui",25,["Cao","Chai"]); 
+	var p2  = new Person("Zhan",26,["Fan"]);
+	
+	//检测某个对象是否是某个函数的原型
+	//alert(Person.prototype.isPrototypeOf(p2)); //true
+	
+	//检测某个对象的constructor
+	//alert(p1.constructor == Person);  //true
+	
+	//检测某个属性是否是自己的属性
+	//alert(p1.hasOwnProperty("name")); //true
+	//alert(p2.hasOwnProperty("name")); //true
+	
+	delete p2.name;
+	//p2.say();
+	//alert(p2.hasOwnProperty("name")); //已经删除了 ， 所以是 FALSE
+	
+	
+	//检测某对象在原型或者自己中是否包含有某个属性，通过in检测
+	//alert("name" in p1);
+	//alert("age" in p2);
+	//alert("address" in p1);
+	
+	
+	function hasPrototypeProperty(obj,prop){
+		return ((!obj.hasOwnProperty(prop))&&(prop in obj));
+	}
+	
+	alert(hasPrototypeProperty(p1,"name"));
+  alert(hasPrototypeProperty(p2,"address"));
+	
+	
+ 	//writeObj(p1);
+ 	//writeObj(p2);
+ 	
+ 	
+ 	//js 打印对象
+ 	function writeObj(obj)
+ 	{ 
+ 		var description = ""; 
+ 		for(var i in obj)
+ 		{ 
+ 			var property=obj[i]; 
+ 			description+=i+" = "+property+"\n";
+ 		} 
+ 		alert(description); 
+ 	}
+  
+ 
+  
+ 
+ 
+</script>
+</html>
+
