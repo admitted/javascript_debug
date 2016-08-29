@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>1.4_jquery_map1</title>
+	<meta name="author" content="Administrator" />
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		$(function() {			
+			/*
+			 * 通过map可以有效的将某个包装集中的元素转换为数组
+			 */
+			'use strict';
+			var json = null;
+			json={};
+			$('#test-form :input[type!=submit]').map(function(){
+				if(this.type !== "radio" || this.checked)
+				{   
+					json[this.name] = this.value; 
+				}
+			});
+			
+			json=JSON.stringify(json);//在此插入代码
+			
+			/**
+			json = {};
+			$('#test-form [type!=submit]').map(function(){
+  		if(this.type !== "radio" || this.checked){
+     		json[this.name] = this.value;
+  		}
+			});
+			json = JSON.stringify(json);
+			***/
+			
+			// 显示结果:
+			if (typeof(json) === 'string') {
+    		alert(json);
+			}
+			else {
+    		alert('json变量不是string!');
+			}
+			
+		});
+		
+	</script>
+</head>
+<body>
+<form id="test-form" action="#0" onsubmit="return false;">
+    <p><label>Name: <input name="name"></label></p>
+    <p><label>Email: <input name="email"></label></p>
+    <p><label>Password: <input name="password" type="password"></label></p>
+    <p>Gender:<label><input name="gender" type="radio" value="m" checked> Male</label> <label><input name="gender" type="radio" value="f"> Female</label></p>
+    <p>
+    	<label>
+    	City: 
+    	<select name="city">
+        <option value="BJ" selected>Beijing</option>
+        <option value="SH">Shanghai</option>
+        <option value="CD">Chengdu</option>
+        <option value="XM">Xiamen</option>
+    	</select>
+    	</label>
+    </p>
+    <p><button type="submit" onClick="submit_table()">Submit</button></p>
+</form>
+
+</body>
+</html>
+

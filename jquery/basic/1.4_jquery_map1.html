@@ -4,25 +4,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>03_select</title>
+	<title>1.4_jquery_map1</title>
 	<meta name="author" content="Administrator" />
 	<script type="text/javascript" src="jquery-1.8.3.js"></script>
 	<script type="text/javascript">
 		$(function() {
-			//$("tbody td:nth-child(1)").css("color","#f00");
+			$("tbody td:nth-child(1)").css("color","#0ff");
 			
 			/*
 			 * 通过map可以有效的将某个包装集中的元素转换为数组
 			 */
 			var ps = $("tbody td:nth-child(1)").map(function(){
-				var n = $(this).next("td");
+				var n = $(this).next("td"); // this 代表 用户姓名 一个 js节点  
 				var p = {"id":$(this).html(),"name":n.html()};
 				return p;
 			}).get();
 			
 			for(var i=0;i<ps.length;i++) {
-				alert(ps[i].name);
+				alert(ps[i].id+","+ps[i].name);
 			}
+			
+			
+			
 		});
 	</script>
 </head>
@@ -70,6 +73,7 @@
 		</tr>
 	</tbody>
 </table>
+
 </body>
 </html>
 

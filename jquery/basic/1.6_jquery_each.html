@@ -8,8 +8,23 @@
 	<meta name="author" content="Administrator" />
 	<script type="text/javascript" src="jquery-1.8.3.js"></script>
 	<script type="text/javascript">
+		//js 打印对象
+ 	function writeObj(obj)
+ 	{ 
+ 		var description = ""; 
+ 		for(var i in obj)
+ 		{ 
+ 			var property=obj[i]; 
+ 			description+=i+" = "+property+"\n";
+ 		} 
+ 		alert(description); 
+ 	}
+		
+		
 		$(function() {
-			var ns = $("tbody td:nth-child(2)");
+			var ns = $("tbody td:nth-child(2)");//意思是找到<tbody> 中的  每个<tr> 的第2个<td>元素 :用户姓名
+			//writeObj(ns);
+			
 			/**
 			 * 使用以下方法进行遍历基本上是基于js进行操作
 			 * 对于jquery有自己的一套遍历方法，可以直接通过
@@ -17,8 +32,8 @@
 			 */
 			/*for(var i=0;i<ns.length;i++) {
 				var nn = ns[i];//nn已经是js的节点
-				var id = $(ns[i]).prev("td").html();
-				var age = $(ns[i]).next("td").html();
+				var id = $(ns[i]).prev("td").html(); //上一个 "td" :用户序号
+				var age = $(ns[i]).next("td").html();//下一个 "td" :用户age
 				nn.innerHTML = id+">>"+nn.innerHTML+"("+age+")";
 			}*/
 			
@@ -31,6 +46,8 @@
 					"."+$(this).html()+
 					"("+$(this).next("td").html()+")");	
 			});
+			
+			
 		});
 	</script>
 </head>
