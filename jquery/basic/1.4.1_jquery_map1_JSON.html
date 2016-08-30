@@ -34,12 +34,13 @@
 			json = JSON.stringify(json);
 			***/
 			
-			// 显示结果:
-			if (typeof(json) === 'string') {
-    		alert(json);
-			}
-			else {
-    		alert('json变量不是string!');
+			function _submit () {
+				if (typeof(json) === 'string') {
+    			alert(json);
+				}
+				else {
+    			alert('json变量不是string!');
+				}
 			}
 			
 		});
@@ -63,7 +64,7 @@
     	</select>
     	</label>
     </p>
-    <p><button type="submit" onClick="submit_table()">Submit</button></p>
+    <p><button type="submit" onClick="_submit()">Submit</button></p>
 </form>
 
 </body>

@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>高阶函数:让一个函数接收另一个函数作为参数</title>
+	<meta name="author" content="Administrator" />
+
+
+</head>
+<body>
+
+<h2>高阶函数:让一个函数接收另一个函数作为参数</>
+
+</body>
+<script type="text/javascript">
+
+
+	 /*
+	 	  高阶函数:让一个函数接收另一个函数作为参数
+	 */
+
+	 x = 5;
+	 y = -8;
+	 f = Math.abs;
+	 function add (x,y,f) {
+	 	 return f(x) + f(y);
+	 }
+
+	 alert(add(x,y,f)); // 13
+
+	 /************************************************************************
+	 		map
+	 ************************************************************************/
+
+
+	 // 平方1
+	 var f2 = function(x) {
+	 		return x*x;
+	 }
+
+	 var arr2 = [1,2,3,4,5,6,7,8,9];
+	 var result = [];
+	 for (var i = 0;i <9 ;i++){
+	 		result.push(f2(arr2[i]));
+	 }
+
+	 alert(result);
+
+
+	 //平方2
+	 function pow (x) {
+	 		return x*x;
+	 }
+
+	 var arr = [1,2,3,4,5,6,7,8,9];
+	 alert(arr.map(pow));
+
+	 //String
+	 alert(arr.map(String)); // ['1', '2', '3', '4', '5', '6', '7', '8', '9'] 已经不是数字了
+
+
+	 /************************************************************************
+	 		reduce  必须接收俩个参数
+	 		[x1, x2, x3, x4].reduce(f) = f(f(f(x1, x2), x3), x4)
+	 ************************************************************************/
+
+	 //Array 求和 [1,3,5,7,9]
+	 var arr4 = [1,3,5,7,9];
+	 var rel = arr4.reduce(function(x,y) {
+	 		return x + y;
+	 });
+	 alert(rel);
+	 
+	 //Array 求积 [1,3,5,7,9]
+	 var rel = arr4.reduce(function(x,y) {
+	 		return x * y;
+	 });
+	 alert(rel);
+
+	 //Array 求13579 [1,3,5,7,9] 
+	 var rel = arr4.reduce(function(x,y) {
+	 		return x *10 + y;
+	 });
+	 alert(rel);
+
+	// 将字符串转为数值
+	// "hello".split("", 3)	//可返回 ["h", "e", "l"]
+	function string2int(s) {
+	   var arr = s.split('').map(function(x){
+	      return x*1
+	   });
+	
+	   return arr.reduce(function(x,y){
+	      return x*10 + y;
+	   });
+	}
+	alert(string2int("12335"));
+  
+  
+  //不规范的英文名字，变为首字母大写，其他小写的规范名字。
+  //输入：['adam', 'LISA', 'barT']，输出：['Adam', 'Lisa', 'Bart']。
+  function normalize(arr) {
+	  return arr.map(function(x){
+	  	var first = x[0].toUpperCase();
+	   	var other = x.substr(1).toLowerCase();
+	   	return first + other;
+		});
+	}
+  
+  alert(normalize(['adam', 'LISA', 'barT']));
+
+
+
+</script>
+</html>
+
