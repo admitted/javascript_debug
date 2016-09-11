@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>7.3_javascript_Operator_Submit_Form</title>
+	<meta name="author" content="Administrator" />
+
+
+</head>
+<body>
+
+<h2>7.3_javascript_Operator_Submit_Form</>
+
+</body>
+
+<!-- HTML结构 -->
+<form id="test-register" action="#" target="_blank" onsubmit="return checkRegisterForm()">
+    <p id="test-error" style="color:red"></p>
+    <p>
+        用户名: <input type="text" id="username" name="username">
+    </p>
+    <p>
+        口令: <input type="password" id="password" name="password_1">
+    </p>
+    <p>
+        重复口令: <input type="password" id="password_2">
+    </p>
+    <p>
+        <button type="submit">提交</button> <button type="reset">重置</button>
+    </p>
+</form>
+
+<script>
+	
+	/*****
+	   利用JavaScript检查用户注册信息是否正确，在以下情况不满足时报错并阻止提交表单：
+     1 用户名必须是3-10位英文字母或数字；
+     2 口令必须是6-20位；
+     3 两次输入口令必须一致。
+	
+	*****/
+function checkRegisterForm() {
+    var input_pwd   = document.getElementById('username');
+    var password_1  = document.getElementById('password_1');
+    var password_2  = document.getElementById('password_2');
+    
+    
+    return true;
+}
+</script>
+
+</html>
+
