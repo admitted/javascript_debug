@@ -22,7 +22,7 @@
         用户名: <input type="text" id="username" name="username">
     </p>
     <p>
-        口令: <input type="password" id="password" name="password_1">
+        口令: <input type="password" id="password_1" name="password">
     </p>
     <p>
         重复口令: <input type="password" id="password_2">
@@ -38,17 +38,49 @@
 	   利用JavaScript检查用户注册信息是否正确，在以下情况不满足时报错并阻止提交表单：
      1 用户名必须是3-10位英文字母或数字；
      2 口令必须是6-20位；
-     3 两次输入口令必须一致。
+     3 两次输入口令必须一致。      
 	
 	*****/
-function checkRegisterForm() {
-    var input_pwd   = document.getElementById('username');
+  function checkRegisterForm() {
+	  var falag       = false;
+    var username    = document.getElementById('username');
     var password_1  = document.getElementById('password_1');
     var password_2  = document.getElementById('password_2');
     
+    var re_username = /[0-9a-zA-Z\_]{3,10}/;
+    var re_password = /^[a-zA-Z]\w{5,17}$/;
     
-    return true;
-}
+    if (re_username.test(username.value) &&  re_password.test(password_1.value) && password_1.value === password_2.value ) {
+    	falag = true;
+    }
+    else
+    {
+      alert("无法提交！！"); 	
+    }
+    
+    return falag ;
+    
+    
+    function callback() {
+    console.log('Done');
+		}
+		console.log('before setTimeout()');
+		setTimeout(callback, 1000); // 1秒钟后调用callback函数
+		console.log('after setTimeout()');
+    
+  }
+
+  function callback() {
+    console.log('Done');
+	}
+	console.log('before setTimeout()');
+	setTimeout(callback, 1000); // 1秒钟后调用callback函数
+	console.log('after setTimeout()');
+
+
+
+
+
 </script>
 
 </html>
